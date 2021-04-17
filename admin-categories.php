@@ -8,7 +8,7 @@ use \Hcode\Model\Product;
 
 $app->get("/admin/categories", function(){
 
-	Category::verifyLogin();
+	User::verifyLogin();
 
 	$search = (isset($_GET['search'])) ? $_GET['search'] : "";
 	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
@@ -40,7 +40,7 @@ $app->get("/admin/categories", function(){
 
 	$page = new PageAdmin();
 	$page->setTpl('categories', [
-		"categories"=>$categories,
+		"categories"=>$pagination['data'],
 		"search"=>$search,
 		"pages"=>[]
 	]);
